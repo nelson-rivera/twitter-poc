@@ -5,15 +5,44 @@ angular.module('core').controller('TweetCtrl', ['$scope', 'socket',
 		$scope.btnIsDisabled = false;
 		$scope.btnText = 'Twitter search';
 
-		socket.on('message',function(data){
-			alert(data.hello);
-		});
-		
+		$scope.graphData = [
+			{
+			    "Month": "Jan-11",
+			    "storeId": 1,
+			    "Sales": 14
+			  },{
+			    "Month": "Feb-11",
+			    "storeId": 1,
+			    "Sales": 14
+			  },{
+			    "Month": "March-11",
+			    "storeId": 1,
+			    "Sales": 17
+			  },{
+			    "Month": "Jan-11",
+			    "storeId": 2,
+			    "Sales": 14
+			  },{
+			    "Month": "Feb-11",
+			    "storeId": 2,
+			    "Sales": 16
+			  },{
+			    "Month": "March-11",
+			    "storeId": 2,
+			    "Sales": 8
+			  }
+		]
+
+
 		$scope.findTweets = function findTweets() {
-			socket.emit('tweet', 'test');
+			var users={user1:$scope.user1,user2:$scope.user2};
+			socket.emit('tweetRequest', users);
 			$scope.btnText = "Searching...";
-			alert('Here should send both twitter users');	
-		}
+		};
+		socket.on('usersChange',function(data){
+			$scope.user1=data.user1;
+			$scope.user2=data.user2;	
+		});
 	}
 ]);
 

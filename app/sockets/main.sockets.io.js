@@ -2,6 +2,7 @@
 
 var http = require('http');
 var socketio = require('socket.io');
+var moment = require('moment');
 
 module.exports = function(app) {
 	var server = http.createServer(app);
@@ -19,14 +20,19 @@ module.exports = function(app) {
 	    access_token_secret: 'ebvvQ5rNq4tVbpzUncwGLAp0ZhLaTtZL5kq4Gnsyt4zMf'
 	});
 
-	T.get('statuses/user_timeline', { screen_name:'MayAqG', count: 10 }, function(err, data, response) {
-	  //console.log(data);
-	});
+	
 
 	io.sockets.on('connection',function(client){
 		console.log('client connected...');
-		client.on('tweet',function(client){
-			console.log('Tweet requested');
+		client.on('tweetRequest',function(users){
+			T.get('statuses/user_timeline', { screen_name:users.user1, count: 10 }, function(err, data, response) {
+			  data.forEach(function(tweet){
+			  	var created = moment(tweet.created_at);
+			  	console.log(tweet.text+" --- "+created.format("MM/DD/YYYY"));	
+			  	client.broadcast.emit('usersChange',users);
+			  })
+			  
+			});
 		});
 
 	});
