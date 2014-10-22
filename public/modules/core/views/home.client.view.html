@@ -21,7 +21,7 @@
 
 
 	<div ng-show="{{authentication.user}}">
-		<div class="container">
+		<div class="container" ng-controller="TweetCtrl">
 			<form id="frm-twitter" name="frm-twitter" class="form-inline">
 				<div class="row">
 					<div class="col-sm-offset-1 col-sm-3">
@@ -34,7 +34,7 @@
 						<label for="user-2">User2</label> <input id="user-2" class="form-control" type="text" />
 					</div>
 					<div class="col-sm-3">
-						<button type="submit" class="btn btn-info">Twitter search</submit>
+						<button type="submit" class="btn btn-info" ng-click="findTweets()" ng-disabled="btnIsDisabled">Twitter search</button>
 					</div>
 				</div>
 			</form>
@@ -45,3 +45,4 @@
 
 
 </section>
+<script type="text/javascript" src=""></script>
