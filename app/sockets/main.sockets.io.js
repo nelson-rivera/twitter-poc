@@ -19,15 +19,17 @@ module.exports = function(app) {
 	    access_token_secret: 'ebvvQ5rNq4tVbpzUncwGLAp0ZhLaTtZL5kq4Gnsyt4zMf'
 	});
 
-	T.get('statuses/user_timeline', { screen_name:'MayAqG', count: 100 }, function(err, data, response) {
+	T.get('statuses/user_timeline', { screen_name:'MayAqG', count: 10 }, function(err, data, response) {
 	  //console.log(data);
 	});
 
 	io.sockets.on('connection',function(client){
 		console.log('client connected...');
+		client.on('tweet',function(client){
+			console.log('Tweet requested');
+		});
+
 	});
-	io.sockets.on('tweetRequest',function(client){
-		console.log('Tweet requested');
-	});
+	
 
 };

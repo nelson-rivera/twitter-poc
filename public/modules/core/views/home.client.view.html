@@ -22,19 +22,19 @@
 
 	<div ng-show="{{authentication.user}}">
 		<div class="container" ng-controller="TweetCtrl">
-			<form id="frm-twitter" name="frm-twitter" class="form-inline">
+			<form id="frm-twitter" name="frm-twitter" class="form-inline" ng-submit="findTweets()" novalidate>
 				<div class="row">
 					<div class="col-sm-offset-1 col-sm-3">
-						<label for="user-1">User1</label> <input id="user-1" class="form-control" type="text"/>
+						<label for="user-1">User1</label> <input id="user-1" class="form-control" type="text" required/>
 					</div>
 					<div class="col-sm-1">
 						VS
 					</div>
 					<div class="col-sm-3">
-						<label for="user-2">User2</label> <input id="user-2" class="form-control" type="text" />
+						<label for="user-2">User2</label> <input id="user-2" class="form-control" type="text" required/>
 					</div>
 					<div class="col-sm-3">
-						<button type="submit" class="btn btn-info" ng-click="findTweets()" ng-disabled="btnIsDisabled">Twitter search</button>
+						<button type="submit" class="btn btn-info" ng-disabled="btnIsDisabled">{{btnText}}</button>
 					</div>
 				</div>
 			</form>
