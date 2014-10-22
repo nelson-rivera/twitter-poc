@@ -21,7 +21,26 @@
 
 
 	<div ng-show="{{authentication.user}}">
-		It works
+		<div class="container">
+			<form id="frm-twitter" name="frm-twitter" class="form-inline">
+				<div class="row">
+					<div class="col-sm-offset-1 col-sm-3">
+						<label for="user-1">User1</label> <input id="user-1" class="form-control" type="text"/>
+					</div>
+					<div class="col-sm-1">
+						VS
+					</div>
+					<div class="col-sm-3">
+						<label for="user-2">User2</label> <input id="user-2" class="form-control" type="text" />
+					</div>
+					<div class="col-sm-3">
+						<button type="submit" class="btn btn-info">Twitter search</submit>
+					</div>
+				</div>
+			</form>
+			
+		</div>
+		
 	</div>	
 
 

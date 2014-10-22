@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 var express = require('express'),
-        http = require('http'),
-        socketio = require('socket.io'),
+    http = require('http'),
+    socketio = require('socket.io'),
 	morgan = require('morgan'),
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
