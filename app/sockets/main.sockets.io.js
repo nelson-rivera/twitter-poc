@@ -63,7 +63,7 @@ module.exports = function(app) {
 					for(var key in twentyDaysObject){
 						responseArray.push({user: users.user2, date: key, count: twentyDaysObject[key]});
 					}
-					console.log(responseArray);	
+					console.log(responseArray);
 					client.broadcast.emit('usersChange',users);
 					client.broadcast.emit('genChart', responseArray);
 				});

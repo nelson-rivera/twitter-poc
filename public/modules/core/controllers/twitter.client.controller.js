@@ -33,7 +33,8 @@ angular.module('core').controller('TweetCtrl', ['$scope', 'socket',
 		   	var x = chart.addCategoryAxis("x", "date");
 		    x.addOrderRule("Date");
 		   	chart.addMeasureAxis("y", "count");
-		   	chart.addSeries([$scope.user1, $scope.user2], dimple.plot.line);
+		   	chart.addSeries('user', dimple.plot.line);
+		   	chart.addLegend(60, 10, 500, 20, "right");
 		   	chart.draw();
 
 		});
