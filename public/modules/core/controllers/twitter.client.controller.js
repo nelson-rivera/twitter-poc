@@ -5,7 +5,7 @@ angular.module('core').controller('TweetCtrl', ['$scope', 'socket',
 		$scope.btnIsDisabled = false;
 		$scope.btnText = 'Twitter search';
 
-		$scope.graphData = [
+		/*$scope.graphData = [
 			{
 			    "Month": "Jan-11",
 			    "storeId": 1,
@@ -31,7 +31,7 @@ angular.module('core').controller('TweetCtrl', ['$scope', 'socket',
 			    "storeId": 2,
 			    "Sales": 8
 			  }
-		]
+		];*/
 
 
 		$scope.findTweets = function findTweets() {
@@ -42,6 +42,10 @@ angular.module('core').controller('TweetCtrl', ['$scope', 'socket',
 		socket.on('usersChange',function(data){
 			$scope.user1=data.user1;
 			$scope.user2=data.user2;	
+		});
+		socket.on('genChart',function(data){
+			console.log(data);
+			alert("termino");	
 		});
 	}
 ]);
