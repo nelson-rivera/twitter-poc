@@ -23,13 +23,9 @@ angular.module('core').controller('TweetCtrl', ['$scope', 'socket',
 			$scope.btnIsDisabled = false;
 			$scope.responseJson=data;
 			console.log(data);
-			var svg = dimple.newSvg("body", 800, 600);
-           
-
-[
-	     { "Word":"Hello", "Awesomeness":2000 },
-	     { "Word":"World", "Awesomeness":3000 }
-	   ]
+			document.getElementById("chart-container").innerHTML = '';
+			var svg = dimple.newSvg("#chart-container", 800, 600);
+            
 
 
         	var dataDimple = dimple.filterData(data, "user", [$scope.user1, $scope.user2])
@@ -37,7 +33,7 @@ angular.module('core').controller('TweetCtrl', ['$scope', 'socket',
 		   	var x = chart.addCategoryAxis("x", "date");
 		    x.addOrderRule("Date");
 		   	chart.addMeasureAxis("y", "count");
-		   	chart.addSeries(null, dimple.plot.line);
+		   	chart.addSeries([$scope.user1, $scope.user2], dimple.plot.line);
 		   	chart.draw();
 
 		});

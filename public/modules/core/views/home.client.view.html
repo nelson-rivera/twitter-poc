@@ -26,20 +26,19 @@
 				<div class="alert alert-info">Enter your Twitter screen name, without the "@" symbol</div>
 				<div class="row">
 					<div class="col-sm-offset-1 col-sm-3">
-						<label for="user-1">User1</label> <input ng-model="user1" id="user-1" class="form-control" type="text" required/>
+						<label for="user-1">User1</label> <input placeholder="user1" ng-model="user1" id="user-1" class="form-control" type="text" required/>
 					</div>
 					<div class="col-sm-1">
 						VS
 					</div>
 					<div class="col-sm-3">
-						<label for="user-2">User2</label> <input ng-model="user2" id="user-2" class="form-control" type="text" required/>
+						<label for="user-2">User2</label> <input placeholder="user2" ng-model="user2" id="user-2" class="form-control" type="text" required/>
 					</div>
 					<div class="col-sm-3">
 						<button type="submit" class="btn btn-info" ng-disabled="btnIsDisabled">{{btnText}}</button>
 					</div>
 				</div>
 			</form>
-			<textarea ng-model="responseJson"></textarea>
 			<div id="chart-container"></div>
 		</div>
 	    
