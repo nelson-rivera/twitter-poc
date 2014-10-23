@@ -23,6 +23,7 @@
 	<div ng-show="{{authentication.user}}">
 		<div class="container" ng-controller="TweetCtrl">
 			<form id="frm-twitter" name="frm-twitter" class="form-inline" ng-submit="findTweets()" novalidate>
+				<div class="alert alert-info">Enter your Twitter screen name, without the "@" symbol</div>
 				<div class="row">
 					<div class="col-sm-offset-1 col-sm-3">
 						<label for="user-1">User1</label> <input ng-model="user1" id="user-1" class="form-control" type="text" required/>
@@ -38,12 +39,8 @@
 					</div>
 				</div>
 			</form>
-			<graph data="graphData">
-		      <x field="Month"></x>
-		      <y field="Sales"></y>
-		      <line field="storeId" value="2"></line>
-  			  <line field="storeId" value="1"></line>
-		    </graph>
+			<textarea ng-model="responseJson"></textarea>
+			<div id="chart-container"></div>
 		</div>
 	    
 	</div>	
