@@ -27,8 +27,8 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-socket-io/socket.min.js',
-				'http://d3js.org/d3.v3.min.js'
-				//'public/lib/angular-dimple/lib/angular-dimple.js'
+				'http://d3js.org/d3.v3.min.js',
+				'public/lib/angular-dimple/lib/angular-dimple.js'
 			]
 		},
 		css: [

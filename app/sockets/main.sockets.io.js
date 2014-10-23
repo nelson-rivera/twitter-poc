@@ -27,20 +27,61 @@ module.exports = function(app) {
 		client.on('tweetRequest',function(users){
 			var responseArray=[];
 			var twentyDaysObject={};
+			var now = moment();
+			for(var i=0; i<15; i++){
+				now.subtract(i, 'days');
+				twentyDaysObject[now.format("MM/DD/YYYY")]=0;
+				var now = moment();
+			}
 			
-			for(var twitUser in users){
-				client.broadcast.emit('usersChange',users[twitUser]);
-				T.get('statuses/user_timeline', { screen_name:users[twitUser], count: 1000 }, function(err, data, response) {
-					var now = moment();
+			T.get('statuses/user_timeline', { screen_name: users.user1, count: 1000 }, function(err, data, response) {
+				console.log(users.user1);	
 					
-					for(var i=0; i<15; i++){
-						now.subtract(i, 'days');
-						twentyDaysObject[now.format("MM/DD/YYYY")]=0;
-						var now = moment();
-					}
+				if(data!=undefined){
+					data.forEach(function(tweet){
+						var createdAt = moment(new Date(tweet.created_at));
+						var createdAtString=createdAt.format("MM/DD/YYYY");
+						if(createdAtString in twentyDaysObject){
+							twentyDaysObject[createdAtString]++;
+						}
+					});
+				}
+				for(var key in twentyDaysObject){
+					responseArray.push({user: users.user1, date: key, count: twentyDaysObject[key]});
+				}
+					
+			});
+			for(var i=0; i<15; i++){
+				now.subtract(i, 'days');
+				twentyDaysObject[now.format("MM/DD/YYYY")]=0;
+				var now = moment();
+			}
+			T.get('statuses/user_timeline', { screen_name: users.user2, count: 1000 }, function(err, data, response) {
+				console.log(users.user2);	
+					
+				if(data!=undefined){
+					data.forEach(function(tweet){
+						var createdAt = moment(new Date(tweet.created_at));
+						var createdAtString=createdAt.format("MM/DD/YYYY");
+						if(createdAtString in twentyDaysObject){
+							twentyDaysObject[createdAtString]++;
+						}
+					});
+				}
+				for(var key in twentyDaysObject){
+					responseArray.push({user: users.user2, date: key, count: twentyDaysObject[key]});
+				}
+					
+			});
+
+			/*for(var twitUser in users){
+
+				T.get('statuses/user_timeline', { screen_name: users[twitUser], count: 1000 }, function(err, data, response) {
+				console.log(users[twitUser]);	
+					
 					if(data!=undefined){
 						data.forEach(function(tweet){
-							var createdAt = moment(tweet.created_at);
+							var createdAt = moment(new Date(tweet.created_at));
 							var createdAtString=createdAt.format("MM/DD/YYYY");
 							if(createdAtString in twentyDaysObject){
 								twentyDaysObject[createdAtString]++;
@@ -49,13 +90,13 @@ module.exports = function(app) {
 					}
 					for(var key in twentyDaysObject){
 						responseArray.push({user: users[twitUser], date: key, count: twentyDaysObject[key]});
+						console.log(users[twitUser]);
 					};
-					console.log(responseArray);
+					
 				});
-
-
-			}
-			
+				
+			}*/
+			client.broadcast.emit('usersChange',users);
 			client.broadcast.emit('genChart', responseArray);
 		  	console.log(responseArray);
 			

@@ -5,7 +5,7 @@ angular.module('core').controller('TweetCtrl', ['$scope', 'socket',
 		$scope.btnIsDisabled = false;
 		$scope.btnText = 'Twitter search';
 
-		/*$scope.graphData = [
+		$scope.graphData = [
 			{
 			    "Month": "Jan-11",
 			    "storeId": 1,
@@ -31,7 +31,7 @@ angular.module('core').controller('TweetCtrl', ['$scope', 'socket',
 			    "storeId": 2,
 			    "Sales": 8
 			  }
-		];*/
+		];
 
 
 		$scope.findTweets = function findTweets() {
